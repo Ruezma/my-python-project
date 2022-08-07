@@ -11,31 +11,18 @@ class StudentInfo:
     # data contains student full names
     @staticmethod
     def student_name():
-        name = ['Aileen Sabella Sentosa',
-                'Alexander Christian Revandi',
-                'Andreas Javier Gareso',
-                'Bertram Steven Potalangi',
-                'Christian Kurniawan',
-                'Dennis Fredyson Amalo',
-                'Eduard Mario Kayesa',
-                'Fania Margaretha Budiharjo',
-                'Gisela Herawati Kusumaningtyas',
-                'Grace Birgitta Handhinata',
-                'Hizkia Sebastian Dannari',
-                'Immanuel Grepadya Moetar',
-                'Jeremy Krisnanta Julian Adi',
-                'Juan Agustiano Ali',
-                'Lukas Eric Danutirtho',
-                'Madeline Eliana Suwono',
-                'Maria Angel Setitit',
-                'Martha Ora',
-                'Nathaniel Kevin',
-                'Ni Luh Made Kartika Nariswari',
-                'Nonnie Felisha Savitri',
-                'Paschalia Margaretha Permatasari',
-                'Patrick Ignatius Djogo Waso',
-                'Russel Ezra Marvelinettou',
-                'Xavier Renjiro Ganeshia Talie']
+        name = ['Aileen Sabella Sentosa', 'Alexander Christian Revandi',
+                'Andreas Javier Gareso', 'Bertram Steven Potalangi',
+                'Christian Kurniawan', 'Dennis Fredyson Amalo',
+                'Eduard Mario Kayesa', 'Fania Margaretha Budiharjo',
+                'Gisela Herawati Kusumaningtyas', 'Grace Birgitta Handhinata',
+                'Hizkia Sebastian Dannari', 'Immanuel Grepadya Moetar',
+                'Jeremy Krisnanta Julian Adi', 'Juan Agustiano Ali',
+                'Lukas Eric Danutirtho', 'Madeline Eliana Suwono',
+                'Maria Angel Setitit', 'Martha Ora', 'Nathaniel Kevin',
+                'Ni Luh Made Kartika Nariswari', 'Nonnie Felisha Savitri',
+                'Paschalia Margaretha Permatasari', 'Patrick Ignatius Djogo Waso',
+                'Russel Ezra Marvelinettou', 'Xavier Renjiro Ganeshia Talie']
         return name
 
     # data contains student names
