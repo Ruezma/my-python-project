@@ -1,8 +1,9 @@
 # importing all the main packages
 from tkinter import *
-from tkinter import ttk
-from functools import partial
-import random, tkinter as tk
+from pynput.keyboard import Key, Controller
+# from tkinter import ttk
+# from functools import partial
+import random, os, tkinter as tk
 
 
 # create class canvas
@@ -42,27 +43,43 @@ class StudentInfo:
                   '21', '22', '23', '24', '25']
         return number
 
+    # several student with specific condition
+    @staticmethod
+    def condition_student():
+        student = ['Fania Margaretha Budiharjo', 'Grace Birgitta Handhinata',
+                   'Lukas Eric Danutirtho', 'Maria Angel Setitit']
+        return student
+
 
 # create a list to avoid the same student name
-used_name_list = []
+used_number_list = []
+
+
+# create restart program system
+def restart():
+    # restart function doesn't return any
+    app.destroy()
+    os.startfile('class-desk-position.py')
+    keyboard.press(Key.shift)
+    keyboard.press(Key.f10)
+    keyboard.release(Key.shift)
+    keyboard.release(Key.f10)
 
 
 # designing positioning system
 def position():
-
     while True:
         random_number = random.randint(1, 25)
-        if random_number not in used_name_list:
+        if random_number not in used_number_list:
             if str(random_number) in StudentInfo.student_number():
                 name = StudentInfo.student_name()
                 nim = StudentInfo.student_nickname()
                 absence = StudentInfo.student_number()
-
-                used_name_list.append(random_number)
-                print(used_name_list)
+                used_number_list.append(random_number)
+                print(used_number_list)
                 print(f'Full Name : {name[random_number - 1]}\n'
                       f'NickName : {nim[random_number - 1]}\n'
-                      f'Absence : {absence[random_number - 1]}\n')
+                      f'Roll Number : {absence[random_number - 1]}\n')
                 return nim[random_number - 1]
         else:
             continue
@@ -100,6 +117,7 @@ def position_interface():
     class_canvas.create_text(270, 471, text=position(), font='poppins 12 bold', fill='#EEEEEE')
     class_canvas.create_text(150, 471, text=position(), font='poppins 12 bold', fill='#EEEEEE')
 
+
 # create round rectangle shape template
 def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
     points = [x1 + radius, y1,
@@ -128,7 +146,7 @@ def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
 
 # create main workspace
 app = tk.Tk()
-app.geometry('960x640')
+app.geometry('1020x600')
 app.title('Random Class Desk Positioning')
 
 # designing main workspace interface
@@ -137,6 +155,9 @@ class_canvas.grid(row=1, column=1)
 
 roundness = 20
 color_fill = '#395B64'
+
+# initiate from package pynput
+keyboard = Controller()
 
 # draw tables position
 table_1 = round_rectangle(820, 200, 920, 260, roundness, fill=color_fill)
@@ -168,8 +189,22 @@ table_23 = round_rectangle(340, 440, 440, 500, roundness, fill=color_fill)
 table_24 = round_rectangle(220, 440, 320, 500, roundness, fill=color_fill)
 table_25 = round_rectangle(100, 440, 200, 500, roundness, fill=color_fill)
 
+# designing widget
+teacher_table_1 = round_rectangle(250, 165, 360, 225, roundness, fill=color_fill)
+teacher_table_2 = round_rectangle(135, 165, 245, 225, roundness, fill=color_fill)
+whiteboard_1 = round_rectangle(180, 80, 500, 100, fill=color_fill)
+whiteboard_2 = round_rectangle(505, 80, 825, 100, fill=color_fill)
+
+class_canvas.create_text(515, 555, text='CLASS BLUEPRINT', font='poppins 18 bold', fill=color_fill)
+
 # create reusable refresh button
 position_interface()
+
+# restart button
+restart_round_button = round_rectangle(820, 520, 920, 580, roundness, fill='#800000')
+restart_button = tk.Button(app, text='Restart', width=5, bd=0,
+                           font='poppins 12 bold', padx=10, command=restart, bg='#800000', fg='#FFFFFF')
+restart_button = class_canvas.create_window(870, 550, window=restart_button)
 
 if __name__ == '__main__':
     app.mainloop()
