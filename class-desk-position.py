@@ -1,8 +1,6 @@
 # importing all the main packages
 from tkinter import *
 from pynput.keyboard import Key, Controller
-# from tkinter import ttk
-# from functools import partial
 import random, os, tkinter as tk
 
 
@@ -42,15 +40,6 @@ class StudentInfo:
                   '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
                   '21', '22', '23', '24', '25']
         return number
-
-    '''
-    # several student with specific condition
-    @staticmethod
-    def condition_student():
-        student = ['Fania Margaretha Budiharjo', 'Grace Birgitta Handhinata',
-                   'Lukas Eric Danutirtho', 'Maria Angel Setitit', 'Nonnie Felisha Savitri']
-        return student
-    '''
 
     # condition roll number
     @staticmethod
@@ -144,6 +133,7 @@ def position_interface():
     class_canvas.create_text(270, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
     class_canvas.create_text(150, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
 
+    # show and check if all item in condition has already show up on desktop
     for q in range(len(second_crosscheck)):
         if str(second_crosscheck[q]) in condition:
             check.append('True')
@@ -203,6 +193,7 @@ app.title('Random Class Desk Positioning')
 class_canvas = Canvas(app, width=960, height=640)
 class_canvas.grid(row=1, column=1)
 
+# control the roundness and color_fill value
 roundness = 20
 color_fill = '#395B64'
 
