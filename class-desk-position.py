@@ -43,16 +43,26 @@ class StudentInfo:
                   '21', '22', '23', '24', '25']
         return number
 
+    '''
     # several student with specific condition
     @staticmethod
     def condition_student():
         student = ['Fania Margaretha Budiharjo', 'Grace Birgitta Handhinata',
-                   'Lukas Eric Danutirtho', 'Maria Angel Setitit']
+                   'Lukas Eric Danutirtho', 'Maria Angel Setitit', 'Nonnie Felisha Savitri']
         return student
+    '''
+
+    # condition roll number
+    @staticmethod
+    def condition_number():
+        num = ['8', '10', '15', '17', '21']
+        return num
 
 
 # create a list to avoid the same student name
-used_number_list = []
+first_crosscheck = []
+second_crosscheck = []
+check = []
 
 
 # create restart program system
@@ -66,17 +76,50 @@ def restart():
     keyboard.release(Key.f10)
 
 
-# designing positioning system
+# counting 'True' word
+def counting():
+    count = 0
+    for counter in check:
+        if counter == 'True':
+            count = count + 1
+    return count
+
+
+# call StudentInfo class
+name = StudentInfo.student_name()
+nim = StudentInfo.student_nickname()
+absence = StudentInfo.student_number()
+condition = StudentInfo.condition_number()
+
+
+# designing important positioning system
+def important_position():
+    while True:
+        random_number = random.randint(1, len(condition))
+        if random_number not in first_crosscheck:
+            for p in range(1, len(absence)):
+                if absence[p - 1] == condition[random_number - 1]:
+                    print(name[p - 1], '==', condition[random_number - 1])
+                    first_crosscheck.append(random_number)
+                    second_crosscheck.append(int(absence[p - 1]))
+                    print(first_crosscheck)
+                    print(second_crosscheck)
+                    print(f'Full Name : {name[p - 1]}\n'
+                          f'NickName : {nim[p - 1]}\n'
+                          f'Roll Number : {absence[p - 1]}\n')
+                    return nim[p - 1]
+        else:
+            continue
+
+
+# designing other positioning system
 def position():
     while True:
-        random_number = random.randint(1, 25)
-        if random_number not in used_number_list:
-            if str(random_number) in StudentInfo.student_number():
-                name = StudentInfo.student_name()
-                nim = StudentInfo.student_nickname()
-                absence = StudentInfo.student_number()
-                used_number_list.append(random_number)
-                print(used_number_list)
+        random_number = random.randint(1, len(name))
+        if random_number not in second_crosscheck:
+            if str(random_number) in absence:
+                second_crosscheck.append(random_number)
+                print(second_crosscheck)
                 print(f'Full Name : {name[random_number - 1]}\n'
                       f'NickName : {nim[random_number - 1]}\n'
                       f'Roll Number : {absence[random_number - 1]}\n')
@@ -88,10 +131,10 @@ def position():
 # designing positioning interface
 def position_interface():
 
-    class_canvas.create_text(870, 231, text=position(), font='poppins 12 bold', fill='#EEEEEE')
-    class_canvas.create_text(750, 231, text=position(), font='poppins 12 bold', fill='#EEEEEE')
-    class_canvas.create_text(630, 231, text=position(), font='poppins 12 bold', fill='#EEEEEE')
-    class_canvas.create_text(510, 231, text=position(), font='poppins 12 bold', fill='#EEEEEE')
+    class_canvas.create_text(870, 231, text=important_position(), font='poppins 12 bold', fill='#EEEEEE')
+    class_canvas.create_text(750, 231, text=important_position(), font='poppins 12 bold', fill='#EEEEEE')
+    class_canvas.create_text(630, 231, text=important_position(), font='poppins 12 bold', fill='#EEEEEE')
+    class_canvas.create_text(510, 231, text=important_position(), font='poppins 12 bold', fill='#EEEEEE')
 
     class_canvas.create_text(870, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
     class_canvas.create_text(750, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
@@ -100,6 +143,13 @@ def position_interface():
     class_canvas.create_text(390, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
     class_canvas.create_text(270, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
     class_canvas.create_text(150, 311, text=position(), font='poppins 12 bold', fill='#EEEEEE')
+
+    for q in range(len(second_crosscheck)):
+        if str(second_crosscheck[q]) in condition:
+            check.append('True')
+
+    if not len(check) == 5:
+        restart()
 
     class_canvas.create_text(870, 391, text=position(), font='poppins 12 bold', fill='#EEEEEE')
     class_canvas.create_text(750, 391, text=position(), font='poppins 12 bold', fill='#EEEEEE')
